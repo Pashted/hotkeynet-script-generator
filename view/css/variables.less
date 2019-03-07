@@ -1,0 +1,172 @@
+@icon-font-path:                            "../../node_modules/uikit/src/fonts";
+@base-body-background:                      #252525;
+@base-body-color:                           #c5c5c5;
+@base-link-color:                           lighten(@button-primary-background, 10%);
+@base-link-hover-color:                     #eee;
+@base-link-hover-text-decoration:           none;
+
+@base-body-font-family:                     "PT Sans", "Helvetica", "Tahoma", "Arial", sans-serif;
+@base-body-font-size:                       1rem;
+@base-body-line-height:                     1.5;
+
+@base-heading-color:                        #eee;
+@base-heading-font-family:                  "Roboto Condensed", "Helvetica", "Tahoma", "Arial", sans-serif;
+@base-heading-font-weight:                  300;
+
+@base-h1-font-size:                         @base-body-font-size + 1.25rem;  // 36px
+@base-h2-font-size:                         @base-body-font-size + 0.90rem;  // 30.4px
+@base-h3-font-size:                         @base-body-font-size + 0.50rem;  // 24px
+@base-h4-font-size:                         @base-body-font-size + 0.15rem;  // 18.4px
+@base-h5-font-size:                         @base-body-font-size;            // 16px
+@base-h6-font-size:                         @base-body-font-size - 0.125rem; // 14px
+@base-h1-line-height:                       @base-body-font-size + 1.625rem; // 42px
+@base-h2-line-height:                       @base-body-font-size + 1.275rem; // 36.4px
+@base-h3-line-height:                       @base-body-font-size + 0.875rem; // 30px
+@base-h4-line-height:                       @base-body-font-size + 0.525rem; // 24.4px
+@base-h5-line-height:                       @base-body-font-size + 0.375rem; // 22px
+@base-h6-line-height:                       @base-body-font-size + 0.25rem;  // 20px
+
+@base-heading-margin-top:                   0.75rem;
+@base-margin-vertical:                      1.5rem;
+
+@navbar-nav-hover-background:               fade(#fff, 5%);
+@progress-background:                       #0e0e0e;
+
+@modal-dialog-background:                   @base-pre-background;
+
+@base-pre-background:                       #2b2b2b;
+@base-pre-font-size:                        calc(@base-h6-font-size);
+@base-pre-padding:                          @base-margin-vertical;
+@base-pre-color:                            @base-body-color;
+
+@base-hr-border:                            fade(#fff, 5%);
+@base-hr-border-width:                      4px;
+
+@base-blockquote-border:                    fade(@base-link-color, 50%);
+@base-blockquote-line-height:               1.4rem;
+
+@comment-header-margin-bottom:              2px;
+
+@tooltip-max-width:                         240px;
+@tooltip-padding-vertical:                  9px;
+@tooltip-padding-horizontal:                12px;
+@tooltip-background:                        fade(@button-primary-background, 95%);
+@tooltip-color:                             @base-link-hover-color;
+@tooltip-triangle-size:                     7px;
+@tooltip-font-size:                         @base-h6-font-size;
+@tooltip-line-height:                       1.4rem;
+
+@button-background:                         fade(#fff, 8%);
+@button-color:                              @base-link-hover-color;
+@button-hover-background:                   fade(#fff, 5%);
+@button-hover-color:                        @base-body-color;
+@button-active-background:                  @button-disabled-background;
+@button-active-color:                       @button-disabled-color;
+
+@button-primary-background:                 #922;
+@button-primary-hover-background:           darken(@button-primary-background, 5%);
+@button-primary-active-background:          darken(@button-primary-background, 12%);
+@button-primary-active-color:               @base-body-color;
+
+@button-disabled-background:                fade(#fff, 3%);
+@button-disabled-color:                     @text-muted-color;
+
+@button-mini-height:                        1.5rem;
+@button-mini-line-height:                   @button-mini-height;
+@button-mini-font-size:                     @base-body-font-size - 0.25;
+@button-mini-padding-horizontal:            @button-mini-font-size;
+
+@button-small-height:                       2rem;
+@button-small-line-height:                  @button-small-height;
+@button-small-font-size:                    @base-h6-font-size;
+@button-small-padding-horizontal:           1rem;
+
+//@button-font-size:                          @global-font-size;
+@button-height:                             2.5rem;
+@button-line-height:                        @button-height;
+@button-padding-horizontal:                 1.5rem;
+
+@button-large-height:                       3rem;
+@button-large-line-height:                  @button-large-height;
+@button-large-font-size:                    @base-h4-font-size;
+@button-large-padding-horizontal:           1.75rem;
+
+@icon-button-width:                         @button-small-height;
+@icon-button-height:                        @button-small-height;
+@icon-button-border-radius:                 0;
+@icon-button-background:                    @button-background;
+@icon-button-font-size:                     @button-font-size;
+@icon-button-color:                         @button-color;
+@icon-button-hover-background:              @button-hover-background;
+@icon-button-hover-color:                   @button-hover-color;
+@icon-button-active-background:             @button-active-background;
+@icon-button-active-color:                  @button-active-color;
+
+@form-height:                               @button-small-height;
+@form-border:                               @form-background;
+@form-background:                           #101010;
+@form-color:                                @base-body-color;
+
+//@form-success-border:                       @global-success-background;
+//@form-danger-border:                        @global-danger-background;
+//@form-warning-border:                       @global-warning-background;
+//@form-blank-border:                         @global-border;
+
+@form-focus-background:                     @form-background;
+@form-focus-border:                         fade(@button-primary-background, 80%);
+@form-focus-color:                          @form-color;
+
+@text-muted-color:                          #666;
+
+@text-small-font-size:                      @base-h6-font-size;
+@text-small-line-height:                    @base-h6-line-height;
+@text-large-font-size:                      @base-h4-font-size;
+@text-large-line-height:                    @base-h4-line-height;
+@text-danger-color:                         #d05c5c;
+@text-warning-color:                        #d0855c;
+@text-primary-color:                        #e0d28f;
+@text-success-color:                        #8ebc87;
+
+@alert-danger-color:                        @text-danger-color;
+@alert-warning-color:                       @text-warning-color;
+@alert-color:                               @text-primary-color;
+@alert-success-color:                       @text-success-color;
+@alert-danger-background:                   fade(@alert-danger-color, 5%);
+@alert-warning-background:                  fade(@alert-warning-color, 5%);
+@alert-background:                          fade(@alert-color, 5%);
+@alert-success-background:                  fade(@alert-success-color, 5%);
+@alert-padding:                             @base-heading-margin-top;
+@alert-large-padding:                       1.25rem;
+
+@badge-font-size:                           0.8rem;
+@badge-font-weight:                         400;
+@badge-color:                               @alert-color;
+@badge-line-height:                         @base-body-line-height;
+
+@badge-danger-background:                   @alert-danger-background;
+@badge-background:                          @alert-background;
+@badge-warning-background:                  @alert-warning-background;
+@badge-success-background:                  @alert-success-background;
+
+@description-list-line-border:              transparent;
+
+//@breakpoint-small: 480px;
+//@breakpoint-medium: 768px;
+//@breakpoint-large: 960px;
+//@breakpoint-xlarge: 1220px;
+//@breakpoint-mini-max: (@breakpoint-small - 1);
+//@breakpoint-small-max: (@breakpoint-medium - 1);
+//@breakpoint-medium-max: (@breakpoint-large - 1);
+//@breakpoint-large-max: (@breakpoint-xlarge - 1);
+
+
+//@internal-divider-icon-image:                  "../../node_modules/uikit/src/images/backgrounds/divider-icon.svg";
+//@internal-list-bullet-image:                   "../../node_modules/uikit/src/images/backgrounds/list-bullet.svg";
+//@internal-form-select-image:                   "../../node_modules/uikit/src/images/backgrounds/form-select.svg";
+//@internal-form-radio-image:                    "../../node_modules/uikit/src/images/backgrounds/form-radio.svg";
+//@internal-form-checkbox-image:                 "../../node_modules/uikit/src/images/backgrounds/form-checkbox.svg";
+//@internal-form-checkbox-indeterminate-image:   "../../node_modules/uikit/src/images/backgrounds/form-checkbox-indeterminate.svg";
+//@internal-nav-parent-close-image:              "../../node_modules/uikit/src/images/backgrounds/nav-parent-close.svg";
+//@internal-nav-parent-open-image:               "../../node_modules/uikit/src/images/backgrounds/nav-parent-open.svg";
+//@internal-accordion-open-image:                "../../node_modules/uikit/src/images/backgrounds/accordion-open.svg";
+//@internal-accordion-close-image:               "../../node_modules/uikit/src/images/backgrounds/accordion-close.svg";

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HotkeyNet Script Generator</title>
+
+    <base href="{{ root }}">
+
+    <link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|Roboto+Condensed:300,400&amp;subset=cyrillic" rel="stylesheet">
+    <link href="node_modules/chosen-js/chosen{{ min }}.css" rel="stylesheet" type="text/css">
+    <link href="view/css/template.css?v={{ ver }}" rel="stylesheet" type="text/css">
+
+    {% for link in head %}
+        {{ link }}
+    {% endfor %}
+
+    <script type="text/javascript" src="node_modules/requirejs/require.js" data-main="view/js/index"></script>
+
+</head>
+<body>
+
+<div class="uk-container uk-container-center">
+    {{ include('generator.twig') }}
+</div>
+
+<footer class="uk-text-center uk-text-small">
+    <a href="http://www.slashfocus.ru/hotkeynet/script-generator" title="HotkeyNet Script Generator" data-uk-tooltip target="_blank">HknGen</a>
+    <span class="uk-text-muted">|</span>
+    <a href="http://www.slashfocus.ru" target="_blank">SlashFocus.ru</a>
+    <span class="uk-text-muted">|</span>
+    <a href="https://github.com/Pashted/hotkeynet-script-generator" title="GitHub repository" data-uk-tooltip target="_blank"><i class="uk-icon-github"></i> GitHub</a>
+</footer>
+
+</body>
+</html>

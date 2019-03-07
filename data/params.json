@@ -1,0 +1,243 @@
+{
+    "_template":                      {
+        "locale": {
+            "label":  "ru",
+            "select": {
+                "ru": " selected",
+                "en": ""
+            }
+        },
+        "en":     {
+            "locale": {
+                "label":  "en",
+                "select": {
+                    "ru": "",
+                    "en": " selected"
+                }
+            }
+        }
+    },
+    "scheme":                         {
+        "type":    "select",
+        "value":   1,
+        "options": ["simple", "base", "expert"]
+    },
+    "win-count":                      {
+        "type":    "number",
+        "for":     "win-count-0",
+        "min":     1,
+        "max":     99,
+        "options": [5]
+    },
+    "comp-count":                     {
+        "type":    "number",
+        "for":     "comp-count-0",
+        "min":     1,
+        "max":     99,
+        "options": [1]
+    },
+    "path":                           {
+        "type":    "text",
+        "options": ["C:\\Program Files\\World of Warcraft\\Wow.exe"],
+        "class":   "uk-width-1-1"
+    },
+    "win-name":                       {
+        "type":    "text",
+        "options": ["World of Warcraft"]
+    },
+    "win-prefix":                     {
+        "type":    "text",
+        "options": ["WoW"],
+        "hidden":  true
+    },
+    "launch-key":                     {
+        "type":    "key",
+        "options": ["Ctrl Alt L"]
+    },
+    "exit-key":                       {
+        "type":    "key",
+        "options": ["Alt F4"]
+    },
+    "rename-windows-key":             {
+        "type":    "key",
+        "options": ["Ctrl R"]
+    },
+    "pause-hotkeys-key":              {
+        "type":    "key",
+        "options": ["ScrollLock"]
+    },
+    "main-keys":                      {
+        "type":    "keys",
+        "options": ["A-Z", "0-9", "Plus", "Minus", "F1-F12"],
+        "except":  ["W", "A", "S", "D", "Q", "E"]
+    },
+    "movement-keys":                  {
+        "type":    "keys",
+        "options": ["Up", "Down", "Left", "Right"],
+        "except":  false
+    },
+    "hide-taskbar":                   {
+        "type":    "radio",
+        "for":     "hide-taskbar-1",
+        "value":   0,
+        "options": ["_NO", "_YES"]
+    },
+    "win-track":                      {
+        "type":    "radio",
+        "for":     "win-track-1",
+        "value":   1,
+        "options": ["_OFF", "_ON"],
+        "linked":  ["", "win-track-delay"]
+    },
+    "add-switch-panel":               {
+        "type":    "radio",
+        "for":     "add-switch-panel-1",
+        "value":   1,
+        "options": ["_NO", "_YES"],
+        "linked":  ["", "switch-panel-size switch-panel-position switch-panel-active-color switch-panel-inactive-color"]
+    },
+    "add-control-panel":              {
+        "type":    "radio",
+        "for":     "add-control-panel-1",
+        "value":   1,
+        "options": ["_NO", "_YES"],
+        "linked":  [
+            "",
+            "control-panel-size control-panel-hotkeys-color control-panel-keystrokes-color control-panel-launch-color control-panel-exit-color"
+        ]
+    },
+    "win-track-delay":                {
+        "type":    "number",
+        "for":     "win-track-delay-0",
+        "min":     0,
+        "max":     9999,
+        "options": [35],
+        "suffix":  ["ms"]
+    },
+    "affinity":                       {
+        "type":        "number",
+        "for":         "affinity-0",
+        "placeholder": ["All"],
+        "min":         0,
+        "max":         32,
+        "options":     [4]
+    },
+    "bg-focus-delay":                 {
+        "type":    "number",
+        "for":     "bg-focus-delay-0",
+        "min":     0,
+        "max":     999,
+        "hidden":  true,
+        "prefix":  ["before", "after"],
+        "options": [0, 0],
+        "suffix":  ["ms", "ms"]
+    },
+    "switch-panel-size":              {
+        "type":    "number",
+        "for":     "switch-panel-size-0",
+        "min":     1,
+        "max":     999,
+        "prefix":  ["width", "height"],
+        "options": [60, 24],
+        "suffix":  ["px", "px"]
+    },
+    "switch-panel-position":          {
+        "type": "number"
+    },
+    "control-panel-size":             {
+        "type":    "number",
+        "for":     "control-panel-size-0",
+        "min":     1,
+        "max":     999,
+        "prefix":  ["width", "height"],
+        "options": [28, 32],
+        "suffix":  ["px", "px"]
+    },
+    "switch-panel-active-color":      {
+        "type":    "color",
+        "for":     "switch-panel-active-color-0",
+        "class":   "uk-form-width-small",
+        "prefix":  ["background", "text"],
+        "options": ["#aa1515", "#ffffff"],
+        "example": 1
+    },
+    "switch-panel-inactive-color":    {
+        "type":    "color",
+        "for":     "switch-panel-inactive-color-0",
+        "class":   "uk-form-width-small",
+        "prefix":  ["background", "text"],
+        "options": ["#0b0b0b", "#ed1c24"],
+        "example": 2
+    },
+    "control-panel-hotkeys-color":    {
+        "type":    "color",
+        "for":     "control-panel-hotkeys-color-0",
+        "class":   "uk-form-width-small",
+        "prefix":  ["background", "text"],
+        "options": ["#33aa33", "#ffffff"],
+        "example": "Hotkeys"
+    },
+    "control-panel-keystrokes-color": {
+        "type":    "color",
+        "for":     "control-panel-keystrokes-color-0",
+        "class":   "uk-form-width-small",
+        "prefix":  ["background", "text"],
+        "options": ["#eeee55", "#151515"],
+        "example": "Typing"
+    },
+    "control-panel-launch-color":     {
+        "type":    "color",
+        "for":     "control-panel-launch-color-0",
+        "class":   "uk-form-width-small",
+        "prefix":  ["background", "text"],
+        "options": ["#0b0b0b", "#808080"],
+        "example": "Start"
+    },
+    "control-panel-exit-color":       {
+        "type":    "color",
+        "for":     "control-panel-exit-color-0",
+        "class":   "uk-form-width-small",
+        "prefix":  ["background", "text"],
+        "options": ["#660b0b", "#eeeeee"],
+        "example": "Exit"
+    },
+    "type-accounts":                  {
+        "type":    "select",
+        "value":   0,
+        "options": ["manually", "auto", "using-hotkey"],
+        "linked":  ["", "acc", "acc type-accounts-key"]
+    },
+    "type-accounts-key":              {
+        "type":    "key",
+        "options": ["Ctrl Shift N"],
+        "label":   false,
+        "hidden":  true
+    },
+    "acc":                            {
+        "type":        "text",
+        "options":     [""],
+        "placeholder": ["Account_1"],
+        "hidden":      true
+    },
+    "sendmode":                       {
+        "type":    "select",
+        "value":   1,
+        "options": ["SendWin", "SendWinM", "SendWinS", "SendWinMF", "SendWinSF", "SendWinX"],
+        "links":   [68, 69, 71, 70, 72, 73],
+        "linked":  ["", "", "", "bg-focus-delay", "bg-focus-delay", ""]
+    },
+    "win-layout-scheme":              {
+        "type":  "button",
+        "value": "open-constructor",
+        "class": "uk-button"
+    },
+    "mouse-mod-key":                  {
+        "type":    "key",
+        "options": ["Oem3"]
+    },
+    "mouse-keys":                     {
+        "type":    "keys",
+        "options": ["LButton", "MButton", "RButton", "Button4", "Button5"],
+        "except":  false
+    }
+}

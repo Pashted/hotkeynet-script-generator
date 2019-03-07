@@ -1,0 +1,24 @@
+{% extends "fields/_field.twig" %}
+
+{% block controls %}
+    <div class="radio uk-button-group">
+        {% for key, option in field.options %}
+            <input
+                    type="radio"
+                    name="{{ field.name }}"
+                    id="{{ field.name }}-{{ key }}"
+                    class="{{ field.class }}"
+                    value="{{ key }}"
+                    {% if field.linked %}
+                        data-linked="{{ field.linked[key] }}"
+                    {% endif %}
+                    {% if field.value == key %}
+                        checked
+                    {% endif %}
+            >
+            <label for="{{ field.name }}-{{ key }}">
+                {{ lang[option] ?? option }}
+            </label>
+        {% endfor %}
+    </div>
+{% endblock %}

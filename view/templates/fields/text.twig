@@ -1,0 +1,18 @@
+{% extends "fields/_field.twig" %}
+
+{% block controls %}
+    {% for key, option in field.options %}
+        <p class="uk-form-controls-condensed">
+            <input
+                    type="text"
+                    id="{{ field.name }}"
+                    class="{{ field.class }}"
+                    value="{{ lang[option] ?? option }}"
+                    {% if field.placeholder and field.placeholder[key] %}
+                        placeholder="{{ lang[field.placeholder[key]] ?? field.placeholder[key] }}"
+                    {% endif %}
+            >
+        </p>
+    {% endfor %}
+{% endblock %}
+

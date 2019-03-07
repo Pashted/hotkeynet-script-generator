@@ -1,0 +1,40 @@
+{% extends "fields/_field.twig" %}
+
+{% block controls %}
+    {% set description = '' %}
+    <select id="{{ field.name }}" class="{{ field.class }}">
+
+        {% for key, option in field.options %}
+            <option
+                    value="{{ option }}"
+                    {% if field.linked %}
+                        data-linked="{{ field.linked[key] }}"
+                    {% endif %}
+                    {% if field.value == key %}
+                        selected
+                    {% endif %}
+            >
+                {{ lang[option] ?? option }}
+            </option>
+
+            {% if lang[option ~ '-desc'] %}
+                {% set description %}
+                    {{ description }}
+                    <span{% if field.value == key %} class="active"{% endif %}>
+                        {% if field.links %}
+                            {{ lang[option ~ '-desc']|format("<a class='mod' target='_blank' href='http://www.slashfocus.ru/index.php?option=com_zoo&task=item&item_id=#{field.links[key]}&Itemid=117'>#{option}</a>") }}
+                        {% else %}
+                            {{ lang[option ~ '-desc'] }}
+                        {% endif %}
+                    </span>
+                {% endset %}
+            {% endif %}
+
+        {% endfor %}
+
+    </select>
+
+    {% if description %}
+        <span class="uk-form-help-inline uk-text-muted">{{ description }}</span>
+    {% endif %}
+{% endblock %}

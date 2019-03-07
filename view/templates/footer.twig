@@ -1,0 +1,30 @@
+<h6 class="spoiler-title" data-spoiler="info"><i class="uk-icon-question-circle"></i> {{ lang.faq }}</h6>
+<div class="spoiler-content">
+    <dl class="uk-description-list-line">
+        {% for question in lang['_faq'] %}
+            <dt>{{ question.0 }}</dt>
+            <dd>{{ question.1 }}</dd>
+        {% endfor %}
+    </dl>
+</div>
+
+<h6 class="spoiler-title" data-spoiler="info"><i class="uk-icon-code-fork"></i> {{ lang.changelog }}</h6>
+<div class="spoiler-content">
+    <dl class="uk-description-list-line">
+        {% for version, elements in lang['_changelog'] %}
+            <dt>{{ version }}</dt>
+            {% for element in elements %}
+                <dd>{{ element }}</dd>
+            {% endfor %}
+        {% endfor %}
+    </dl>
+</div>
+
+<h6 class="spoiler-title" data-spoiler="info"><i class="uk-icon-exclamation-triangle"></i> {{ lang['known-issues'] }}</h6>
+<div class="spoiler-content">
+    <ul class="uk-list uk-text-muted">
+        {% for issue in lang['_issues'] %}
+            <li>{{ issue }}</li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,56 @@
+{
+    "_tabs": {
+        "name":      ["start", "windows", "control", "keystrokes", "toggles", "mouse", "script"],
+        "icon":      ["rocket", "television", "gamepad", "keyboard-o", "toggle-off", "hand-pointer-o", "code"],
+        "width":     [12.25, 11, 17.25, 14.25, 20.75, 11.75, 12.75],
+        "width_eng": [11.25, 15.25, 14, 17, 14, 13, 12.5]
+    },
+    "tabs":  {
+        "0": [
+            "scheme",
+            "launch-key",
+            "exit-key",
+            "path",
+            "win-count",
+            ["h4", "autorization"],
+            "type-accounts",
+            "type-accounts-key",
+            "acc",
+            ["h4", "operating-system"],
+            "hide-taskbar",
+            "affinity"
+        ],
+        "1": [
+            "win-name",
+            "win-prefix",
+            "rename-windows-key",
+            "win-track",
+            "win-track-delay",
+            ["h4", "win-layout"],
+            "win-layout-scheme"
+        ],
+        "2": [
+            ["h4", "switch-panel"],
+            "add-switch-panel",
+            "switch-panel-size",
+            "switch-panel-active-color",
+            "switch-panel-inactive-color",
+            ["h4", "control-panel"],
+            "add-control-panel",
+            "control-panel-size",
+            "control-panel-hotkeys-color",
+            "control-panel-keystrokes-color",
+            "control-panel-launch-color",
+            "control-panel-exit-color"
+        ],
+        "3": [
+            "sendmode",
+            "bg-focus-delay",
+            "main-keys",
+            "movement-keys"
+        ],
+        "4": [],
+        "5": [],
+        "6": []
+    }
+}

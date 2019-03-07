@@ -1,0 +1,108 @@
+@import "uikit";
+@import "variables";
+@import "hkn-gen";
+
+html {
+    overflow-y: scroll;
+}
+
+footer {
+    padding:          35px 0;
+    background-color: @progress-background;
+    box-shadow:       0 2000px 0 2000px @progress-background;
+    span {
+        margin: 0 7px;
+    }
+}
+
+abbr, abbr[title] {
+    border-bottom:   1px dotted @text-muted-color;
+    cursor:          help;
+    text-decoration: none;
+}
+
+article {
+    margin-top:    40px;
+    margin-bottom: 0 !important;
+}
+
+.gen-footer {
+    padding:          35px 0;
+    background-color: #151515;
+    box-shadow:       0 2000px 0 2000px #151515;
+}
+
+.spoiler-title {
+    font-size:   @base-h4-font-size;
+    line-height: @base-h4-line-height;
+    [class^=uk-icon] {
+        margin-right: 7px;
+    }
+}
+
+.spoiler-content {
+    dd {
+        font-style: italic;
+        color:      @text-muted-color;
+    }
+    + .spoiler-title {
+        border-top:  4px solid @base-hr-border;
+        margin-top:  15px;
+        padding-top: 35px;
+    }
+}
+
+.chosen-container {
+    font-size:   16px;
+    font-family: @base-pre-font-family;
+    .chosen-single {
+        background:   @form-background;
+        border-color: @form-border;
+        color:        @base-body-color;
+        box-shadow:   none;
+        height:       30px;
+        line-height:  30px;
+        outline:      none;
+        div {
+            top: 4px;
+        }
+    }
+    .chosen-results {
+        color: @base-body-color;
+        li.highlighted {
+            background:  @navbar-nav-hover-background;
+            font-weight: 600;
+        }
+        li.disabled-result {
+            color: @text-muted-color;
+        }
+    }
+}
+
+.chosen-container-active.chosen-with-drop {
+    .chosen-single, .chosen-drop {
+        background:   @form-background;
+        border-color: @form-focus-border;
+    }
+    .chosen-single {
+        box-shadow: 0 0 5px fade(black, 15%);
+    }
+}
+
+.chosen-container-single {
+    .chosen-single {
+        border-radius: 1px;
+    }
+    .chosen-drop {
+        border-radius: 0 0 1px 1px;
+    }
+    .chosen-search input[type="text"] {
+        border-color: @form-blank-border;
+        color:        @base-body-color;
+        &:focus {
+            border-color: @form-focus-border;
+            outline:      none;
+        }
+    }
+}
+

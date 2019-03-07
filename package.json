@@ -1,0 +1,26 @@
+{
+  "name": "hkn-gen",
+  "version": "2.0.0",
+  "description": "Hotkeynet Script Generator",
+  "main": "index.js",
+  "dependencies": {
+    "chosen-js": "^1.8.7",
+    "jquery": "^3.3.1",
+    "requirejs": "^2.3.6",
+    "uikit": "^2.27.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pashted/hotkeynet-script-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pashted/hotkeynet-script-generator/issues"
+  },
+  "homepage": "https://github.com/Pashted/hotkeynet-script-generator#readme"
+}

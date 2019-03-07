@@ -1,0 +1,15 @@
+{% extends "fields/key.twig" %}
+
+{% block except %}
+    {% if field.except %}
+        <abbr title="{{ lang['except-desc'] }}" data-uk-tooltip="{pos:'top-right'}">{{ lang['except'] }}</abbr>
+        <ul class="except-{{ field.name }}">
+
+            {% for key in field.except %}
+                <li class="uk-badge uk-badge-success">{{ key }}</li>
+            {% endfor %}
+
+            <li class="add-except"><a>{{ lang.add }}</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}

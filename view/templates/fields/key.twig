@@ -1,0 +1,11 @@
+{% extends "fields/_field.twig" %}
+
+{% block controls %}
+    <ul class="{{ field.name }}">
+        {% for option in field.options %}
+            <li class="uk-badge">{{ option }}</li>
+        {% endfor %}
+        <li class="add"><a>{{ lang['add'] }}</a></li>
+    </ul>
+    {% block except %}{% endblock %}
+{% endblock %}

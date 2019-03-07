@@ -1,0 +1,5 @@
+{% extends "fields/_field.twig" %}
+
+{% block controls %}
+    <a id="{{ field.name }}" class="{{ field.class }}">{{ lang[field.value] ?? field.value }}</a>
+{% endblock %}

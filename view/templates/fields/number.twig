@@ -1,0 +1,31 @@
+{% extends "fields/_field.twig" %}
+
+{% block controls %}
+    {% for key, option in field.options %}
+        <input
+                type="text"
+                id="{{ field.name }}-{{ key }}"
+                class="{{ field.class }}"
+                value="{{ option }}"
+                autocomplete="off"
+                {% if field.placeholder and field.placeholder[key] %}
+                    placeholder="{{ lang[field.placeholder[key]] ?? field.placeholder[key] }}"
+                {% endif %}
+                {% if field.prefix and field.prefix[key] %}
+                    title="{{ lang[field.prefix[key]] }}" data-uk-tooltip
+                {% endif %}
+                {% block data %}
+                    size="{{ field.max|length }}"
+                    data-min="{{ field.min }}"
+                    data-max="{{ field.max }}"
+                {% endblock %}
+        >
+        {%- block button -%}{%- endblock -%}
+        {%- if field.suffix and field.suffix[key] -%}
+            <span class="uk-form-help-inline uk-text-muted">
+                {{ lang[field.suffix[key]] ?? field.suffix[key] }}
+            </span>
+        {%- endif -%}
+    {% endfor %}
+    {% block example %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,17 @@
+<div class="uk-form-row" {% if field.hidden %}style="display:none"{% endif %}>
+    {% block label %}
+        {% if field.label %}
+            <label class="uk-form-label" for="{{ field.for ?? field.name }}">
+                {% if lang[field.name ~ '-desc'] %}
+                    <abbr title="<strong>{{ field.label }}</strong><br><i>{{ lang[field.name ~ '-desc'] }}</i>"
+                          data-uk-tooltip="{pos:'top-right'}">{{ field.label }}</abbr>
+                {% else %}
+                    {{ field.label }}
+                {% endif %}
+            </label>
+        {% endif %}
+    {% endblock %}
+    <div class="uk-form-controls">
+        {% block controls %}{% endblock %}
+    </div>
+</div>

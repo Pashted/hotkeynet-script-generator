@@ -1,0 +1,14 @@
+{% extends "fields/number.twig" %}
+
+{% block data %}{% endblock %}
+
+{%- block button -%}
+    <a class="pick-color uk-button uk-button-small" title="{{ lang['select-color'] }}" data-uk-tooltip>
+        <i class="uk-icon-eyedropper"></i>
+    </a>
+{%- endblock -%}
+
+{% block example %}
+    <span style="background-color:{{ field.options.0 }};color:{{ field.options.1 }}"
+          title="{{ lang.example }}" data-uk-tooltip="{pos:'right'}">{{ field.example }}</span>
+{% endblock %}

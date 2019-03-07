@@ -1,0 +1,44 @@
+<article class="uk-article" id="generator">
+    <script type="application/json" id="lang">{{ lang._js }}</script>
+
+    <h1>{{ lang['generator-heading'] }}</h1>
+    <small class="uk-text-muted">v{{ ver }}</small>
+
+    <div class="uk-align-right uk-panel">
+        <select id="locale">
+            <option value="ru" {{ locale.select.ru }}>Русский</option>
+            <option value="en" {{ locale.select.en }}>English</option>
+        </select>
+        <label class="{{ locale.label }}" for="locale"></label>
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-align-right uk-panel">
+            <button class="uk-button" type="button" id="reset"
+                    title="<b>{{ lang.reset }}</b><br>{{ lang['reset-desc'] }}"
+                    data-uk-tooltip="{pos:'bottom'}"><i class="uk-icon-undo"></i></button>
+
+            <button class="uk-button" type="button" id="prev-tab" title="{{ lang.prev }}"
+                    data-uk-tooltip="{pos:'bottom'}" disabled><i class="uk-icon-chevron-left"></i></button>
+
+            <button class="uk-button uk-button-primary" type="button" id="next-tab" title="{{ lang.next }}"
+                    data-uk-tooltip="{pos:'bottom'}"><i class="uk-icon-chevron-right"></i></button>
+        </div>
+
+        <div class="uk-text-muted">{{ lang['generator-desc'] }}</div>
+    </div>
+
+    <ul class="uk-clearfix">{{ tabs }}</ul>
+
+    <div class="uk-progress">
+        <div class="uk-progress-bar"></div>
+    </div>
+
+    <form id="gen" class="uk-form uk-form-horizontal uk-switcher" method="post" data-scheme="{{ default_scheme }}">
+        {{ form }}
+    </form>
+</article>
+
+<div class="gen-footer uk-text-small">
+    {{ include('footer.twig') }}
+</div>
