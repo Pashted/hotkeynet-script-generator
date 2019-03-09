@@ -79,6 +79,23 @@ class HknController
 
 
     /**
+     * Starting point
+     *
+     * @since 2.0.0
+     */
+    public function execute()
+    {
+        if (isset($_POST['script']) && $_POST['script'] === 'true') {
+            require __DIR__ . "/HknScript.php";
+            $script = new HknScript();
+            $script->render();
+        } else {
+            self::render();
+        }
+    }
+
+
+    /**
      * Set language strings for view
      *
      * @since 1.0.0
@@ -161,7 +178,7 @@ class HknController
      *
      * @since 2.0.0
      */
-    private function set_templates()
+    protected function set_templates()
     {
         $this->params->_template->ver            = _GEN_VER;
         $this->params->_template->root           = _GEN_URI_ROOT;
@@ -187,16 +204,15 @@ class HknController
      *
      * @since 2.0.0
      */
-    private function set_head()
+    protected function set_head()
     {
-        $min = _GEN_DEBUG ? '' : '.min';
 
 //        if (_GEN_JOOMLA_INTEGRATION) {
 //            $doc = JFactory::getDocument();
 //            JHtml::_('formbehavior.chosen', 'select');
 //        } else {
 //        }
-        require _GEN_ROOT . "/classes/HknDocument.php";
+        require __DIR__ . "/HknDocument.php";
         $doc = new HknDocument();
 
         $doc->setMetaData('og:image', 'view/images/generator_full.png');
@@ -205,7 +221,7 @@ class HknController
         $this->params->_template = array_merge(
             $this->params->_template,
             [
-                'min'  => $min,
+                'min'  => _GEN_DEBUG ? '' : '.min',
                 'head' => $doc->head
             ]
         );
@@ -221,14 +237,14 @@ class HknController
      * @throws Twig_Error_Syntax
      * @since 1.0.0
      */
-    public function render()
+    protected function render()
     {
 
         self::set_templates();
 
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] != 'POST')
             self::set_head();
-        }
+
 
         // TODO: replace form by twig-template
         $tabs       = "";
@@ -290,7 +306,7 @@ class HknController
      * @throws Twig_Error_Syntax
      * @since 2.0.0
      */
-    private function view_field($name)
+    protected function view_field($name)
     {
         // TODO: сделать всплывающее окно "изменение списка горячих клавиш" и отменить "поштучное" редактирование в списке вне модального окна
 

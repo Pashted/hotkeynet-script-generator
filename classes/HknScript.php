@@ -8,14 +8,10 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists("Plural")) {
-    require "Plural.php";
-}
 
 class HknScript extends HknController
 {
     protected $win_count;
-    protected $code = array();
 
     public function __construct()
     {
@@ -36,19 +32,36 @@ class HknScript extends HknController
             $this->lang['win'] = 'windows';
     }
 
-    function render()
+    /**
+     * @return array
+     */
+    function load_script()
     {
-        echo "<pre>" . self::filter_code($this->code) . "</pre>";
+        $type = $this->scheme . 'Script';
+
+        require __DIR__ . "/scripts/$type.php";
+        $script = new $type;
+
+        return $script->code;
     }
 
+    function render()
+    {
+        echo "<pre>" . self::filter_code(self::load_script()) . "</pre>";
+    }
+
+    /**
+     * @param $code array
+     * @return string|string[]|null
+     */
     function filter_code($code)
     {
         // TODO: нужно вставлять тег abbr с тайтлами (опционально)
 
         $modifiers = '{pause-hotkeys-key}|,';
-        $triggers = '%Trigger%|%TriggerMainKey%';
-        $commands = 'LaunchAndRename';
-        $keywords = 'TurnHotkeysOn|TurnHotkeysOff|Else';
+        $triggers  = '%Trigger%|%TriggerMainKey%';
+        $commands  = 'LaunchAndRename';
+        $keywords  = 'TurnHotkeysOn|TurnHotkeysOff|Else';
 
         $pattern = array();
         $matches = array();
@@ -104,4 +117,19 @@ class HknScript extends HknController
         return preg_replace($pattern, $matches, htmlspecialchars(implode("\r\n", $code)));
 //        return htmlspecialchars(implode("\r\n", $code));
     }
+
+
+    /**
+     * Определение окончаний слов в паре с числительными
+     *
+     * @example 1 комментарий, 2 комментария, 5 комментариев
+     * @param int $number
+     * @return int
+     */
+    function _decline($number)
+    {
+        $cases = [2, 0, 1, 1, 1, 2];
+        return ($number % 100 > 4 && $number % 100 < 20) ? 2 : $cases[min($number % 10, 5)];
+    }
+
 }

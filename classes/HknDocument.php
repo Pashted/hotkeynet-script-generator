@@ -9,7 +9,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Class Document
+ * Class Document. Analog of the Joomla class
  */
 class HknDocument
 {

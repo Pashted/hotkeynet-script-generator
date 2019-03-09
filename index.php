@@ -13,15 +13,7 @@ define('_GEN_URI_ROOT', _GEN_JOOMLA_INTEGRATION ? "/gen/" : "/");
 define('_GEN_ROOT', __DIR__);
 define('_JEXEC', 1);
 
-
 require _GEN_ROOT . "/classes/HknController.php";
 
 $gen = new HknController();
-
-if (isset($_POST['script']) && $_POST['script'] === 'true') {
-    require _GEN_ROOT . "/classes/$gen->scheme/Script.php";
-    $script = new Script();
-    $script->render();
-} else {
-    $gen->render();
-}
+$gen->execute();

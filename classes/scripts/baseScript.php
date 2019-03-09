@@ -8,11 +8,15 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-require _GEN_ROOT . "/classes/HknScript.php";
-
-class Script extends HknScript
+class baseScript extends HknScript
 {
-    public function __construct() {
+    /**
+     * @var array
+     */
+    protected $code = array();
+
+    public function __construct()
+    {
         parent::__construct();
 
         $tpl = array(
@@ -83,7 +87,7 @@ class Script extends HknScript
 
         $send_label = [];
 
-        $this->code[] = sprintf($tpl['title'], $this->win_count, (Plural::_decline($this->win_count) ? $this->lang['wins'] : $this->lang['win']));
+        $this->code[] = sprintf($tpl['title'], $this->win_count, (parent::_decline($this->win_count) ? $this->lang['wins'] : $this->lang['win']));
 
         $this->code[] = "";
 
