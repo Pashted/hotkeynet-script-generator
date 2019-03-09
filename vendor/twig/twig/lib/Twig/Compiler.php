@@ -21,9 +21,10 @@ class Twig_Compiler
     private $source;
     private $indentation;
     private $env;
-    private $debugInfo = array();
+    private $debugInfo = [];
     private $sourceOffset;
     private $sourceLine;
+    private $varNameSalt = 0;
 
     public function __construct(Twig_Environment $env)
     {
@@ -62,11 +63,12 @@ class Twig_Compiler
     {
         $this->lastLine = null;
         $this->source = '';
-        $this->debugInfo = array();
+        $this->debugInfo = [];
         $this->sourceOffset = 0;
         // source code starts at 1 (as we then increment it when we encounter new lines)
         $this->sourceLine = 1;
         $this->indentation = $indentation;
+        $this->varNameSalt = 0;
 
         $node->compile($this);
 
@@ -140,7 +142,7 @@ class Twig_Compiler
                 setlocale(LC_NUMERIC, 'C');
             }
 
-            $this->raw($value);
+            $this->raw(var_export($value, true));
 
             if (false !== $locale) {
                 setlocale(LC_NUMERIC, $locale);
@@ -233,7 +235,7 @@ class Twig_Compiler
 
     public function getVarName()
     {
-        return sprintf('__internal_%s', hash('sha256', uniqid(mt_rand(), true), false));
+        return sprintf('__internal_%s', hash('sha256', __METHOD__.$this->varNameSalt++));
     }
 }
 
