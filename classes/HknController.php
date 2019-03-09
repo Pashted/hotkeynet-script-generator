@@ -168,7 +168,7 @@ class HknController
         $this->params->_template->lang           = $this->lang;
         $this->params->_template->default_scheme = $this->params->scheme->options[$this->params->scheme->value];
 
-        $this->params->_template = (array) $this->params->_template;
+        $this->params->_template = (array)$this->params->_template;
 
         require_once _GEN_ROOT . '/vendor/autoload.php';
 
@@ -191,26 +191,24 @@ class HknController
     {
         $min = _GEN_DEBUG ? '' : '.min';
 
-        if (_GEN_JOOMLA_INTEGRATION) {
-            $doc = JFactory::getDocument();
-            JHtml::_('formbehavior.chosen', 'select');
-
-        } else {
-            require _GEN_ROOT . "/classes/HknDocument.php";
-            $doc = new HknDocument();
-        }
+//        if (_GEN_JOOMLA_INTEGRATION) {
+//            $doc = JFactory::getDocument();
+//            JHtml::_('formbehavior.chosen', 'select');
+//        } else {
+//        }
+        require _GEN_ROOT . "/classes/HknDocument.php";
+        $doc = new HknDocument();
 
         $doc->setMetaData('og:image', 'view/images/generator_full.png');
 
-        if (!_GEN_JOOMLA_INTEGRATION) {
-            $this->params->_template = array_merge(
-                $this->params->_template,
-                [
-                    'min'  => $min,
-                    'head' => $doc->head
-                ]
-            );
-        }
+//        if (!_GEN_JOOMLA_INTEGRATION)
+        $this->params->_template = array_merge(
+            $this->params->_template,
+            [
+                'min'  => $min,
+                'head' => $doc->head
+            ]
+        );
 
     }
 
@@ -272,7 +270,8 @@ class HknController
             $form .= "</fieldset>";
         }
 
-        $template        = _GEN_JOOMLA_INTEGRATION || $_SERVER['REQUEST_METHOD'] == 'POST' ? 'generator.twig' : 'index.twig';
+        $template        = /*_GEN_JOOMLA_INTEGRATION || */
+            $_SERVER['REQUEST_METHOD'] == 'POST' ? 'generator.twig' : 'index.twig';
         $template_params = array_merge($this->params->_template, ['form' => $form, 'tabs' => $tabs]);
 
         echo $this->view->render($template, $template_params);
