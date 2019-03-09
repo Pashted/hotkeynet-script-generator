@@ -62,14 +62,6 @@ class HknController
      */
     protected $view;
 
-    /**
-     * Regexp masks for cut comments form json-files
-     *
-     * @var array
-     * @since 2.0.0
-     */
-    protected $mask = [['#(?<!:)//.*\r\n#', '#/\*(.|\r\n)*?\*/#'], ['', '']];
-
 
     public function __construct()
     {
@@ -105,13 +97,13 @@ class HknController
         // TODO: keep locale in browser
         // TODO: add sef urls for scheme, active tab and locale
 
-        $this->lang   = json_decode(preg_replace($this->mask[0], $this->mask[1], file_get_contents(_GEN_ROOT . '/data/lang/ru.json')), true);
+        $this->lang   = self::parse_json(_GEN_ROOT . '/data/lang/ru.json', true);
         $this->locale = isset($_POST['locale']) && $_POST['locale'] === 'en' ? "en" : "ru";
 //        $this->locale = "en";
 
         // cheat/hack for creating strings, that doesn't exist in eng version (only 1st depth lvl)
         if ($this->locale === 'en') {
-            $eng = json_decode(preg_replace($this->mask[0], $this->mask[1], file_get_contents(_GEN_ROOT . '/data/lang/en.json')));
+            $eng = self::parse_json(_GEN_ROOT . '/data/lang/en.json');
 
             foreach ($this->lang as $prop => $value) {
 
@@ -138,13 +130,13 @@ class HknController
      */
     private function set_params()
     {
-        $this->params = json_decode(preg_replace($this->mask[0], $this->mask[1], file_get_contents(_GEN_ROOT . "/data/params.json")));
+        $this->params = self::parse_json(_GEN_ROOT . "/data/params.json");
 
         $this->scheme = isset($_POST['scheme']) && in_array(preg_replace('/[^A-Za-z]*/', '', $_POST['scheme']), $this->params->scheme->options)
             ? $_POST['scheme']
             : $this->params->scheme->options[$this->params->scheme->value];
 
-        $this->map = json_decode(preg_replace($this->mask[0], $this->mask[1], file_get_contents(_GEN_ROOT . "/data/maps/$this->scheme.json")));
+        $this->map = self::parse_json(_GEN_ROOT . "/data/maps/$this->scheme.json");
 
         if ($this->locale === 'en') {
             $this->params->_template->locale = $this->params->_template->en->locale;
@@ -152,6 +144,24 @@ class HknController
         }
     }
 
+    /**
+     * Get clean json (w/o comments)
+     *
+     * @param $path string
+     * @param $make_array bool
+     * @since 2.0.0
+     * @return stdClass|array
+     */
+    private function parse_json($path, $make_array = false)
+    {
+        $result = preg_replace(
+            array('#(?<!:)//.*\r\n#', '#/\*(.|\r\n)*?\*/#'),
+            array('', ''),
+            file_get_contents($path)
+        );
+
+        return json_decode($result, $make_array);
+    }
 
     /**
      * Show all available field types only for tests
