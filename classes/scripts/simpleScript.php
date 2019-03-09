@@ -13,8 +13,8 @@ class simpleScript extends HknScript
     /**
      * @var array
      */
-    protected $code = array();
-
+    public $result;
+    
     public function __construct()
     {
         parent::__construct();
@@ -87,88 +87,88 @@ class simpleScript extends HknScript
 
         $send_label = [];
 
-        $this->code[] = sprintf($tpl['title'], $this->win_count, (parent::_decline($this->win_count) ? $this->lang['wins'] : $this->lang['win']));
+        $this->result[] = sprintf($tpl['title'], $this->win_count, (parent::_decline($this->win_count) ? $this->lang['wins'] : $this->lang['win']));
 
-        $this->code[] = "";
+        $this->result[] = "";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['rename-windows-key'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['rename-windows-key'][1];
-        $this->code[] = $tpl['rename-windows-key'][2];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['rename-windows-key'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['rename-windows-key'][1];
+        $this->result[] = $tpl['rename-windows-key'][2];
         for ($i = 1; $i <= $this->win_count; $i++) {
-            $this->code[] = sprintf($tpl['rename-windows-key'][3], $i);
+            $this->result[] = sprintf($tpl['rename-windows-key'][3], $i);
             $send_label[] = "w$i";
         }
         $send_label = implode(', ', $send_label);
 
-        $this->code[] = "";
+        $this->result[] = "";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['path'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['path'][1];
-        $this->code[] = $tpl['path'][2];
-        $this->code[] = $tpl['path'][3];
-        $this->code[] = $tpl['path'][4];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['path'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['path'][1];
+        $this->result[] = $tpl['path'][2];
+        $this->result[] = $tpl['path'][3];
+        $this->result[] = $tpl['path'][4];
 
-        $this->code[] = "";
+        $this->result[] = "";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['launch-key'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['launch-key'][1];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['launch-key'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['launch-key'][1];
         for ($i = 1; $i <= $this->win_count; $i++)
-            $this->code[] = sprintf($tpl['launch-key'][2], $i);
+            $this->result[] = sprintf($tpl['launch-key'][2], $i);
 
-        $this->code[] = "";
+        $this->result[] = "";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['label'][0];
-        $this->code[] = $tpl['comment-line'];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['label'][0];
+        $this->result[] = $tpl['comment-line'];
         for ($i = 1; $i <= $this->win_count; $i++)
-            $this->code[] = sprintf($tpl['label'][1], $i, $i);
+            $this->result[] = sprintf($tpl['label'][1], $i, $i);
 
-        $this->code[] = "[main-keys]";
+        $this->result[] = "[main-keys]";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['main-keys'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['main-keys'][1];
-        $this->code[] = sprintf($tpl['main-keys'][2], $send_label);
-        $this->code[] = $tpl['main-keys'][3];
-        $this->code[] = "[/main-keys][movement-keys]";
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['main-keys'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['main-keys'][1];
+        $this->result[] = sprintf($tpl['main-keys'][2], $send_label);
+        $this->result[] = $tpl['main-keys'][3];
+        $this->result[] = "[/main-keys][movement-keys]";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['movement-keys'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['movement-keys'][1];
-        $this->code[] = sprintf($tpl['movement-keys'][2], $send_label);
-        $this->code[] = $tpl['movement-keys'][3];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['movement-keys'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['movement-keys'][1];
+        $this->result[] = sprintf($tpl['movement-keys'][2], $send_label);
+        $this->result[] = $tpl['movement-keys'][3];
 
-        $this->code[] = "[/movement-keys][mouse-keys]";
+        $this->result[] = "[/movement-keys][mouse-keys]";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['mouse-mod-key'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = '[mouse-mod-key]' . $tpl['mouse-mod-key'][1];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['mouse-mod-key'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = '[mouse-mod-key]' . $tpl['mouse-mod-key'][1];
 
-        $this->code[] = "";
+        $this->result[] = "";
 
-        $this->code[] = "[/mouse-mod-key]{$tpl['mouse-keys'][0]}";
-        $this->code[] = sprintf($tpl['mouse-keys'][1], $send_label);
-        $this->code[] = $tpl['mouse-keys'][2];
+        $this->result[] = "[/mouse-mod-key]{$tpl['mouse-keys'][0]}";
+        $this->result[] = sprintf($tpl['mouse-keys'][1], $send_label);
+        $this->result[] = $tpl['mouse-keys'][2];
 
-        $this->code[] = "[/mouse-keys][nomod-pause-hotkeys-key]";
+        $this->result[] = "[/mouse-keys][nomod-pause-hotkeys-key]";
 
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['nomod-pause-hotkeys-key'][0];
-        $this->code[] = $tpl['comment-line'];
-        $this->code[] = $tpl['nomod-pause-hotkeys-key'][1];
-        $this->code[] = $tpl['nomod-pause-hotkeys-key'][2];
-        $this->code[] = $tpl['nomod-pause-hotkeys-key'][3];
-        $this->code[] = $tpl['nomod-pause-hotkeys-key'][4];
-        $this->code[] = $tpl['nomod-pause-hotkeys-key'][5] . '[/nomod-pause-hotkeys-key]';
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['nomod-pause-hotkeys-key'][0];
+        $this->result[] = $tpl['comment-line'];
+        $this->result[] = $tpl['nomod-pause-hotkeys-key'][1];
+        $this->result[] = $tpl['nomod-pause-hotkeys-key'][2];
+        $this->result[] = $tpl['nomod-pause-hotkeys-key'][3];
+        $this->result[] = $tpl['nomod-pause-hotkeys-key'][4];
+        $this->result[] = $tpl['nomod-pause-hotkeys-key'][5] . '[/nomod-pause-hotkeys-key]';
 
     }
 }

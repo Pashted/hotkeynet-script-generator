@@ -11,6 +11,14 @@ defined('_JEXEC') or die('Restricted access');
 
 class HknScript extends HknController
 {
+    /**
+     * @var string
+     */
+    private $code;
+
+    /**
+     * @var string
+     */
     protected $win_count;
 
     public function __construct()
@@ -32,9 +40,7 @@ class HknScript extends HknController
             $this->lang['win'] = 'windows';
     }
 
-    /**
-     * @return array
-     */
+
     function load_script()
     {
         $type = $this->scheme . 'Script';
@@ -42,22 +48,12 @@ class HknScript extends HknController
         require __DIR__ . "/scripts/$type.php";
         $script = new $type;
 
-        return $script->code;
+        $this->code = implode("\r\n", $script->result);
     }
+
 
     function render()
     {
-        echo "<pre>" . self::filter_code(self::load_script()) . "</pre>";
-    }
-
-    /**
-     * @param $code array
-     * @return string|string[]|null
-     */
-    function filter_code($code)
-    {
-        // TODO: нужно вставлять тег abbr с тайтлами (опционально)
-
         $modifiers = '{pause-hotkeys-key}|,';
         $triggers  = '%Trigger%|%TriggerMainKey%';
         $commands  = 'LaunchAndRename';
@@ -114,8 +110,10 @@ class HknScript extends HknController
             $pattern[] = "/(&lt;|>)($key)(\s|&gt;|<)/";
             $matches[] = "$1<abbr title='<strong>{$this->lang['command']}</strong><br><i>$text</i>' data-uk-tooltip='{\"pos\":\"top-left\"}'>$2</abbr>$3";
         }
-        return preg_replace($pattern, $matches, htmlspecialchars(implode("\r\n", $code)));
-//        return htmlspecialchars(implode("\r\n", $code));
+
+        self::load_script();
+
+        echo "<pre>" . preg_replace($pattern, $matches, htmlspecialchars($this->code)) . "</pre>";
     }
 
 
