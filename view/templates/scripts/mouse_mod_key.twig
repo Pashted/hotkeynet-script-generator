@@ -1,0 +1,10 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+{% for line in text.mouse_mod_key -%}
+    // {{ line }}
+{% endfor %}
+{% endblock %}
+
+{% block code -%}
+    <UseKeyAsModifier {mouse-mod-key}>
+{% endblock %}

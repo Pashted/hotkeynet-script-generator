@@ -19,7 +19,7 @@
     },
     "scheme":                         {
         "type":    "select",
-        "value":   1,
+        "value":   0,
         "options": ["simple", "base", "expert"]
     },
     "win-count":                      {
@@ -47,8 +47,8 @@
     },
     "win-prefix":                     {
         "type":    "text",
-        "options": ["WoW"],
-        "hidden":  true
+        "options": ["WoW"]
+//        "hidden":  true
     },
     "launch-key":                     {
         "type":    "key",

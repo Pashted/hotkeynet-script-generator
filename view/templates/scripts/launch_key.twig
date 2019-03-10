@@ -1,0 +1,11 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+    // {{ text.launch_key }}
+{% endblock %}
+
+{% block code -%}
+<Hotkey {pause-hotkeys-key}{launch-key}>
+{% for n in 1..win_count %}
+    <LaunchAndRename "{win-prefix}{{ n }}">
+{% endfor %}
+{%- endblock %}

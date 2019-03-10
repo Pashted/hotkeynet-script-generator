@@ -1,0 +1,10 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+    // {{ text.label }}
+{% endblock %}
+
+{% block code -%}
+{% for n in 1..win_count -%}
+    <Label w{{ n }} local {sendmode} "{win-prefix}{{ n }}">
+{% endfor %}
+{%- endblock %}

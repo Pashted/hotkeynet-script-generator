@@ -1,0 +1,12 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+    // {{ text.nomod_pause_hotkeys_key }}
+{% endblock %}
+
+{% block code -%}
+<Hotkey {nomod-pause-hotkeys-key}>
+    <If HotkeysAreOn> // {{ text.nomod_pause_hotkeys_key_if }}
+        <TurnHotkeysOff>
+    <Else>
+        <TurnHotkeysOn>
+{%- endblock %}

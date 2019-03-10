@@ -1,0 +1,10 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+    // {{ text.movement_keys }}
+{% endblock %}
+
+{% block code -%}
+<MovementHotkey {pause-hotkeys-key}{movement-keys}>
+    <SendLabel {{ send_label }}>
+        <Key %Trigger%>
+{%- endblock %}

@@ -1,0 +1,15 @@
+{{ include('scripts/head.twig') }}
+{% set send_label = 'w' ~ (1..win_count)|join(', w') %}
+
+{{ include('scripts/rename_windows_key.twig') }}
+{{ include('scripts/path.twig') }}
+{{ include('scripts/launch_key.twig') }}
+{{ include('scripts/label.twig') }}[main-keys]
+{{ include('scripts/main_keys.twig') }}
+[/main-keys][movement-keys]
+{{ include('scripts/movement_keys.twig') }}
+[/movement-keys][mouse-keys]
+{{ include('scripts/mouse_mod_key.twig') }}
+{{ include('scripts/mouse_keys.twig') }}
+[/mouse-keys][nomod-pause-hotkeys-key]
+{{ include('scripts/nomod_pause_hotkeys_key.twig') }}[/nomod-pause-hotkeys-key]

@@ -152,7 +152,7 @@ class HknController
      * @since 2.0.0
      * @return stdClass|array
      */
-    private function parse_json($path, $make_array = false)
+    protected function parse_json($path, $make_array = false)
     {
         $result = preg_replace(
             array('#(?<!:)//.*\r\n#', '#/\*(.|\r\n)*?\*/#'),
@@ -269,9 +269,8 @@ class HknController
 
             $form .= "<fieldset class='uk-margin-top'>";
 
-            if ($tab == $script_tab) {
-                $form .= $this->view->render('script/tab.twig', $this->params->_template);
-            }
+            if ($tab == $script_tab)
+                $form .= $this->view->render('scripts/_tab.twig', $this->params->_template);
 
             foreach ($fields as $index => $field) {
 

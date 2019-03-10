@@ -1,0 +1,12 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+    // {{ text.rename_windows_key }}
+{% endblock %}
+
+{% block code -%}
+<Hotkey {pause-hotkeys-key}{rename-windows-key}>
+    <SendPC local>
+{% for n in 1..win_count %}
+        <RenameWin "{win-name}" "{win-prefix}{{ n }}">
+{% endfor %}
+{%- endblock %}

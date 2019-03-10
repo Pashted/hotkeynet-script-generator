@@ -1,0 +1,46 @@
+{
+    "_head":                      [
+        "Sample script for %d {win-name} %s on 1 PC.",
+        "",
+        "Instructions: Copy this entire script (including gray comments).",
+        "Save it in a file. Load it into HotkeyNet.",
+        "",
+        "Toggle the {nomod-pause-hotkeys-key} key to turn hotkeys off and on",
+        "(you can change this if you want, just like you can change everything else with HotkeyNet).",
+        "",
+        "For more info, go to www.slashfocus.ru"
+    ],
+    "rename_windows_key":         "Press {rename-windows-key} to rename {dynamic-win-prefix}'s if you launch them manually.",
+    "path":                       "Subroutine to launch and rename a copy of {dynamic-win-prefix}.",
+    "launch_key":                 "Hotkey to launch and rename your {dynamic-win-prefix} windows.",
+    "label":                      "Define mail labels for sending key strokes.",
+    "main_keys":                  "Define hotkeys for all key combinations that will get sent to {dynamic-win-prefix}'s.",
+    "movement_keys":              "Define movement keys that will get sent to all {dynamic-win-prefix}'s.",
+    "mouse_mod_key":              [
+        "Broadcast mouse clicks.",
+        "Hold down {mouse-mod-key} when you want to broadcast."
+    ],
+    "nomod_pause_hotkeys_key":    "Fast on/off hotkeys.",
+    "nomod_pause_hotkeys_key_if": "if hotkeys are on",
+    "command":                    "$2 command",
+    "_script_tips":               {
+        "TurnHotkeysOn":    "Turns hotkeys on.",
+        "TurnHotkeysOff":   "Turns hotkeys off.",
+        "UseKeyAsModifier": "Designates a key that will be used as a modifier in hotkey triggers.",
+        "MovementHotkey":   "Creates one or more hold down hotkeys that can be used for movement in games.",
+        "Hotkey":           "Declares the key combination that triggers this hotkey.",
+        "Key":              "Sends a keystroke modified by Ctrl, Alt, or Shift.",
+        "SendPC":           "Identifies the PC to which instructions get sent.",
+        "RenameTargetWin":  "Changes the name of the currently targeted window.",
+        "RenameWin":        "Changes the name of a window.",
+        "Command":          "Creates a user-defined command that can be used as a subroutine or entered on HotkeyNet&prime;s command line.",
+        "Run":              "Starts a program and targets its top-level window.",
+        "SendLabel":        "Specifies the mailing labels to which keystrokes get sent.",
+        "Label":            "Creates a mailing label.",
+        "ClickMouse":       "Moves the mouse cursor to a specified location and clicks a mouse button.",
+        "If":               "Tests a condition and performs your instructions only if the condition is true.",
+        "Else":             "Used with &quot;If&quot;.",
+        "%TriggerMainKey%": "Gets replaced by the key combination that triggers the hotkey. In this case the modifiers will cut off.",
+        "%Trigger%":        "Gets replaced by the key combination that triggers the hotkey."
+    }
+}

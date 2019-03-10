@@ -1,0 +1,11 @@
+{% extends "scripts/$section.twig" %}
+{% block title -%}
+    // {{ text.path }}
+{% endblock %}
+
+{% block code -%}
+<Command LaunchAndRename>
+    <SendPC local>
+        <Run "{path}">
+        <RenameTargetWin %1%>
+{% endblock %}

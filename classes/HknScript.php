@@ -14,16 +14,13 @@ class HknScript extends HknController
     /**
      * @var string
      */
-    private $code;
+    private $win_count;
 
-    /**
-     * @var string
-     */
-    protected $win_count;
 
     public function __construct()
     {
         parent::__construct();
+
 
         $this->win_count = isset($_POST['win_count'])
             ? preg_replace('/[^0-9]+/', '', $_POST['win_count'])
@@ -38,21 +35,37 @@ class HknScript extends HknController
 
         if ($this->locale === 'en' && $this->win_count > 1)
             $this->lang['win'] = 'windows';
+
+        $this->set_templates();
     }
 
 
-    function load_script()
+    protected function set_templates()
     {
-        $type = $this->scheme . 'Script';
+        parent::set_templates();
 
-        require __DIR__ . "/scripts/$type.php";
-        $script = new $type;
+        $this->params->_template['win_count'] = $this->win_count;
 
-        $this->code = implode("\r\n", $script->result);
+        $this->params->_template['text'] = $this->parse_json(_GEN_ROOT . "/data/lang/scripts/$this->scheme/$this->locale.json", true);
+//        $this->params->_template['text'] = $this->parse_json(_GEN_ROOT . "/data/lang/scripts/simple/ru.json", true);
+
+        $this->params->_template['text']['_head'][0] = sprintf(
+            $this->params->_template['text']['_head'][0],
+            $this->win_count,
+            self::_decline($this->win_count) ? $this->lang['wins'] : $this->lang['win']
+        );
     }
 
 
-    function render()
+    private function get_script()
+    {
+        $html = $this->view->render("scripts/_$this->scheme.twig", $this->params->_template);
+
+        return htmlspecialchars($html);
+    }
+
+
+    public function render()
     {
         $modifiers = '{pause-hotkeys-key}|,';
         $triggers  = '%Trigger%|%TriggerMainKey%';
@@ -60,60 +73,56 @@ class HknScript extends HknController
         $keywords  = 'TurnHotkeysOn|TurnHotkeysOff|Else';
 
         $pattern = array();
-        $matches = array();
+        $replace = array();
 
-        $pattern[] = '/\[([a-z-]+)\]/'; // создание секций, которые могут быть скрыты в зависимости от пользовательских настроек генератора
-        $matches[] = '<span data-section="$1">';
-        $pattern[] = '/\[\/[a-z-]+\]/';
-        $matches[] = '</span>';
+        $pattern[] = '#(//.*\v+|\s//.*)#m'; // закрашивание однострочных комментариев
+        $replace[] = "<span class='com'>$1</span>";
 
-        $pattern[] = '/%(\d+|All)%/i'; // выделение переменных красным
-        $matches[] = '<span class="var">%$1%</span>';
+        $pattern[] = '/\[([a-z-]+?)\]/'; // создание секций, которые могут быть скрыты в зависимости от пользовательских настроек генератора
+        $replace[] = '<span data-section="$1">';
+        $pattern[] = '#\[/[a-z-]+?\]#';
+        $replace[] = '$1</span>';
 
-        $pattern[] = '/^(\/\/.*[\r\n]+)/m'; // закрашивание комментариев
-        $matches[] = '<span class="com">$1</span>';
-
-        $pattern[] = '/(\s\/\/.*)(\r\n)/'; // закрашивание однострочных комментариев
-        $matches[] = "<span class='com'>$1</span>$2";
+        $pattern[] = '/(%(\d+|All)%)/i'; // выделение переменных красным
+        $replace[] = '<span class="var">$1</span>';
 
         $pattern[] = "/Hotkey\s(.*)&gt;/i"; // выделение клавиш жёлтым
-        $matches[] = 'Hotkey <span class="ex">$1</span><span class="tag">&gt;</span>';
+        $replace[] = 'Hotkey <span class="ex">$1</span><span class="tag">&gt;</span>';
 
         //        $pattern[] = "/\s(except)/i";
-        //        $matches[] = ' <span class="txt">$1</span>';
+        //        $replace[] = ' <span class="txt">$1</span>';
 
         $pattern[] = "/($modifiers)/i";
-        $matches[] = '<span class="num">$1</span>';
+        $replace[] = '<span class="num">$1</span>';
 
         $pattern[] = "/($triggers)/i";
-        $matches[] = '<span class="ex">$1</span>';
+        $replace[] = '<span class="ex">$1</span>';
 
         $pattern[] = "/([a-su-z0-9]);\s/i"; //
-        $matches[] = '$1<span class="num">;</span> ';
+        $replace[] = '$1<span class="num">;</span> ';
 
         $pattern[] = "/($commands)&gt;/i"; // объявление пользовательской команды выделяем голубым
-        $matches[] = '<span class="fn">$1</span>&gt;';
+        $replace[] = '<span class="fn">$1</span>&gt;';
 
         $pattern[] = "/&lt;($commands)\s(.*)&gt;/i"; // вызов пользовательской команды выделяем голубым
-        $matches[] = '<span class="tag">&lt;</span><span class="fn">$1</span> <span class="var">$2</span><span class="tag">&gt;</span>';
+        $replace[] = '<span class="tag">&lt;</span><span class="fn">$1</span> <span class="var">$2</span><span class="tag">&gt;</span>';
 
         $pattern[] = '/&lt;(\w+\s)(.*)&gt;/'; // обрамление фиолетовыми тегами ключевых слов с параметрами
-        $matches[] = '<span class="tag">&lt;$1</span>$2<span class="tag">&gt;</span>';
+        $replace[] = '<span class="tag">&lt;$1</span>$2<span class="tag">&gt;</span>';
 
         $pattern[] = "/&lt;($keywords)&gt;/"; // обрамление фиолетовыми тегами простых ключевых слов без параметров
-        $matches[] = '<span class="tag">&lt;$1&gt;</span>';
+        $replace[] = '<span class="tag">&lt;$1&gt;</span>';
 
         $pattern[] = '/(&quot;.*?&quot;)/'; // выделение строк зеленым
-        $matches[] = '<span class="str">$1</span>';
+        $replace[] = '<span class="str">$1</span>';
 
-        foreach ($this->lang['script-tips'] as $key => $text) { // вставка подсказок в скрипт
+        foreach ($this->params->_template['text']['_script_tips'] as $key => $text) { // вставка подсказок в скрипт
             $pattern[] = "/(&lt;|>)($key)(\s|&gt;|<)/";
-            $matches[] = "$1<abbr title='<strong>{$this->lang['command']}</strong><br><i>$text</i>' data-uk-tooltip='{\"pos\":\"top-left\"}'>$2</abbr>$3";
+            $replace[] = "$1<abbr title='<strong>{$this->params->_template['text']['command']}</strong><br><i>$text</i>' data-uk-tooltip='{\"pos\":\"top-left\"}'>$2</abbr>$3";
         }
 
-        self::load_script();
+        echo "<pre>" . preg_replace($pattern, $replace, self::get_script()) . "</pre>";
 
-        echo "<pre>" . preg_replace($pattern, $matches, htmlspecialchars($this->code)) . "</pre>";
     }
 
 
@@ -124,7 +133,7 @@ class HknScript extends HknController
      * @param int $number
      * @return int
      */
-    function _decline($number)
+    private function _decline($number)
     {
         $cases = [2, 0, 1, 1, 1, 2];
         return ($number % 100 > 4 && $number % 100 < 20) ? 2 : $cases[min($number % 10, 5)];
